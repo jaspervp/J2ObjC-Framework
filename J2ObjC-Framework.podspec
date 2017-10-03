@@ -1,4 +1,4 @@
-@version = "2.0.4"
+@version = "2.0.4.1"
 
 Pod::Spec.new do |s|
   s.name         		= "J2ObjC-Framework"
