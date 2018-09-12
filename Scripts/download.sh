@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ev
 
-j2objc_version=2.1.1
+j2objc_version=2.2
 link=https://github.com/google/j2objc/releases/download/${j2objc_version}/j2objc-${j2objc_version}.zip
 sha1_checksum=a62807929c2583a03cc73d57ce67fc5730cf24b7
 echo "fetching j2objc dist"
@@ -87,7 +87,23 @@ echo "fetching j2objc"
     done
     for i in {1..5}
     do
-       curl --range 1000000000- -o j2objc-${j2objc_version}.zip.part11 -L ${link}
+       curl --range 1000000000-1099999999 -o j2objc-${j2objc_version}.zip.part11 -L ${link}
+       status=$?
+       if [ "$status" -eq 0 ]; then
+          break
+       fi
+    done
+    for i in {1..5}
+    do
+       curl --range 1100000000-1199999999 -o j2objc-${j2objc_version}.zip.part12 -L ${link}
+       status=$?
+       if [ "$status" -eq 0 ]; then
+          break
+       fi
+    done
+    for i in {1..5}
+    do
+       curl --range 1200000000- -o j2objc-${j2objc_version}.zip.part12 -L ${link}
        status=$?
        if [ "$status" -eq 0 ]; then
           break
